@@ -7,8 +7,7 @@ import (
 	"gboard_dict/dict"
 	"io/ioutil"
 	"os"
-
-	"github.com/mholt/archiver/v3"
+	// "github.com/mholt/archiver/v3"
 )
 
 type arrayFlags []string
@@ -68,20 +67,21 @@ func worker(url string) error {
 		return err
 	}
 
-	txtPath := "./" + s.DictName + ".txt"
-	zipPath := "./" + s.DictName + ".zip"
+	os.MkdirAll("dict/"+s.DictName, os.ModePerm)
+	txtPath := "./dict/" + s.DictName + "/" + s.DictName + ".txt"
+	// zipPath := "./" + s.DictName + ".zip"
 	content := s.FormatToImport()
 	err = ioutil.WriteFile(txtPath, []byte(content), 0644)
 	if err != nil {
 		return err
 	}
 
-	os.Remove(zipPath)
-	err = archiver.Archive([]string{txtPath}, zipPath)
-	os.Remove(txtPath)
-	if err != nil {
-		return err
-	}
+	// os.Remove(zipPath)
+	// err = archiver.Archive([]string{txtPath}, zipPath)
+	// os.Remove(txtPath)
+	// if err != nil {
+	// 	return err
+	// }
 	fmt.Println("finish parse ")
 	return nil
 }
