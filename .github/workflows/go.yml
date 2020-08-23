@@ -38,4 +38,4 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: dict
-        path: ./*
+        path: dicts
