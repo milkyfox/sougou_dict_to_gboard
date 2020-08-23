@@ -31,11 +31,11 @@ jobs:
         fi
 
     - name: Build
-      run: go run ./cli/main.go -url https://pinyin.sogou.com/dict/detail/index/4
+      run: go run ./cli/main.go -url https://pinyin.sogou.com/dict/detail/index/104237
 
       
     - name: 上传词典
       uses: actions/upload-artifact@master
       with:
         name: dict
-        path: dict/*
+        path: ./*
