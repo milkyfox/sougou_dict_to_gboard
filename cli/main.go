@@ -8,7 +8,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/mholt/archiver/v3"
+	"github.com/mholt/archiver"
+	// "github.com/mholt/archiver/v3"
 )
 
 type arrayFlags []string
@@ -68,8 +69,9 @@ func worker(url string) error {
 		return err
 	}
 
-	txtPath := "./" + s.DictName + ".txt"
-	zipPath := "./" + s.DictName + ".zip"
+	os.Mkdir("dicts", os.ModePerm)
+	txtPath := "./dicts/" + s.DictName + ".txt"
+	zipPath := "./dicts/" + s.DictName + ".zip"
 	content := s.FormatToImport()
 	err = ioutil.WriteFile(txtPath, []byte(content), 0644)
 	if err != nil {
